@@ -4,8 +4,7 @@ description: A building block theme using uikit awesomeness.
 core: 8.x
 libraries:
   - uikitty/global
-stylesheets-remove:
-  - '@classy/css/components/tabs.css'
+
 regions:
   navigation: 'Navigation'
   header: 'Branding'

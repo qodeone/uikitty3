@@ -1,0 +1,107 @@
+#header {
+    background: #171c23 none repeat scroll 0 0;
+}
+#header .uk-navbar {
+    background: #171c23 none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+}
+#header .uk-navbar-nav > li > a {
+    text-shadow:none;
+    color:#ddddd1;
+}
+.uk-navbar-nav > li > a:active {
+    background:rgba(10,10,10,0.2);
+}
+.uk-navbar-nav:first-child > li:first-child > a {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.uk-navbar-brand {
+    font-family: isaacblack;
+    font-size: 25px;
+    text-shadow: none;
+    padding: 0 5px 0 0;
+    text-transform: lowercase;
+    color:#fafafa;
+}
+h1, h2, h3, h4 {
+    font-family: isaacblack;
+}
+
+.uk-subnav .itemlink a {
+    background:rgba(200,200,200,0.2);
+    color:#666;
+    border:1px solid #aaa;
+}
+.uk-subnav .itemlink a:hover {
+    background:rgba(200,200,200,0.3);
+    color:#111;
+    border:1px solid #ccc;
+}
+.uk-subnav .node-readmore.itemlink a {
+    background: #009dd8;
+    color: #fff;
+    border:1px solid #ddd;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,.2);
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+}
+.uk-breadcrumb {
+    padding:15px;
+    background:#ececec;
+    border-radius:4px;
+}
+.block-views-blocktags-block-1 .content {
+    padding:5px 15px;
+    clear:both;
+}
+
+h1.page-title {
+	margin-top:2em;
+}
+.uk-tag {
+    background:rgba(255,255,255,0.5);
+    border:1px solid #ddd;
+    box-shadow:1px 1px 1px rgba(100,100,100,0.2);
+    display:inline-block;
+    margin:0 5px 5px 0;
+}
+.uk-tag h2 {
+    margin:0;
+    line-height:1em;
+}
+.uk-tag a {
+    font-size:13px;
+    padding:5px 10px;
+    display:inline-block;
+    color:#555;
+}
+.uk-tag a:hover {
+    color:#222;
+    text-decoration:none;
+    background-color:#ddd;
+}
+.uk-contrast .uk-tag a:hover {
+    color:#222;
+    text-decoration:none;
+    background-color:#ddd;
+}
+.uk-back-black {
+    background: #111;
+}
+.uk-dark .uk-panel-box {
+    background:rgba(40,40,40,0.3);
+    border-color:#555;
+}
+
+.uk-contrast .uk-nav-side > li > a {
+    color:#aaa;
+}
+
+.block-user-login-block label {
+	display:block;
+	color:#999;
+}
+.block-user-login-block input{
+	margin-bottom:1em;
+}

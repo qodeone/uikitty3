@@ -1,0 +1,13 @@
+
+
+@font-face {
+    font-family: 'isaacblack';
+    src: url('../fonts/isaacblack/IsaacBlack.woff2') format('woff2'),
+         url('../fonts/isaacblack/IsaacBlack.woff') format('woff'),
+         url('../fonts/isaacblack/IsaacBlack.ttf') format('truetype'),
+         url('../fonts/isaacblack/IsaacBlack.svg#IsaacBlack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

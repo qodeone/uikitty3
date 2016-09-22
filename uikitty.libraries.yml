@@ -1,0 +1,182 @@
+sticky:
+  css:
+    theme:
+      uikit/css/components/sticky.min.css: {}
+  js:
+    uikit/js/components/sticky.min.js: {}
+
+
+global:
+  version: 1.x
+  css:
+    theme:
+      uikit/css/uikit.gradient.min.css: {}
+      css/fonts.css: {}
+      css/app.css: {}
+  js:
+    uikit/js/uikit.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupalSettings
+    - core/drupal
+    
+accordion:
+  css:
+    theme:
+      uikit/css/components/accordion.min.css: {}
+  js:
+    uikit/js/components/accordion.min.js: {}
+    
+autocomplete:
+  css:
+    theme:
+      uikit/css/components/autocomplete.min.css: {}
+  js:
+    uikit/js/components/autocomplete.min.js: {}
+    
+datepicker:
+  css:
+    theme:
+      uikit/css/components/datepicker.gradient.min.css: {}
+  js:
+    uikit/js/components/datepicker.min.js: {}
+    
+dotnav:
+  css:
+    theme:
+      uikit/css/components/dotnav.min.css: {}
+
+form-advanced:
+  css:
+    theme:
+      uikit/css/components/form-advanced.gradient.min.css: {}
+
+form-file:
+  css:
+    theme:
+      uikit/css/components/form-file.gradient.min.css: {}
+
+form-password:
+  css:
+    theme:
+      uikit/css/components/form-password.gradient.min.css: {}
+  js:
+    uikit/js/components/form-password.min.js: {} 
+    
+form-select:
+  css:
+    theme:
+      uikit/css/components/form-select.gradient.min.css: {}
+  js:
+    uikit/js/components/form-select.min.js: {} 
+    
+grid-parallax:
+  js:
+    uikit/js/components/grid-parallax.min.js: {} 
+    
+grid:
+  js:
+    uikit/js/components/grid.min.js: {} 
+    
+htmleditor:
+  css:
+    theme:
+      uikit/css/components/htmleditor.gradient.min.css: {}
+  js:
+    uikit/js/components/htmleditor.min.js: {} 
+    
+lightbox:
+  js:
+    uikit/js/components/lightbox.min.js: {} 
+    
+nestable:
+  css:
+    theme:
+      uikit/css/components/nestable.gradient.min.css: {}
+  js:
+    uikit/js/components/nestable.min.js: {} 
+    
+notify:
+  css:
+    theme:
+      uikit/css/components/notify.gradient.min.css: {}
+  js:
+    uikit/js/components/noptify.min.js: {} 
+    
+placeholder:
+  css:
+    theme:
+      uikit/css/components/placeholder.gradient.min.css: {}
+
+pagination:
+  js:
+    uikit/js/components/pagination.min.js: {} 
+    
+parallax:
+  js:
+    uikit/js/components/parallax.min.js: {} 
+    
+progress:
+  css:
+    theme:
+      uikit/css/components/progress.gradient.min.css: {}
+
+search:
+  css:
+    theme:
+      uikit/css/components/search.gradient.min.css: {}
+  js:
+    uikit/js/components/search.min.js: {} 
+    
+slidenav:
+  css:
+    theme:
+      uikit/css/components/slidenav.gradient.min.css: {}
+
+slider:
+  css:
+    theme:
+      uikit/css/components/slider.gradient.min.css: {}
+  js:
+    uikit/js/components/slider.min.js: {} 
+    
+slideset:
+  js:
+    uikit/js/components/slideset.min.js: {} 
+    
+slideshow-fx:
+  js:
+    uikit/js/components/slideshow-fx.min.js: {}
+    
+slideshow:
+  css:
+    theme:
+      uikit/css/components/slideshow.gradient.min.css: {}
+  js:
+    uikit/js/components/slideshow.min.js: {} 
+    
+sortable:
+  css:
+    theme:
+      uikit/css/components/sortable.gradient.min.css: {}
+  js:
+    uikit/js/components/sortable.min.js: {} 
+    
+tooltip:
+  css:
+    theme:
+      uikit/css/components/tooltip.gradient.min.css: {}
+  js:
+    uikit/js/components/tooltip.min.js: {} 
+    
+timepicker:
+  js:
+    uikit/js/components/timepicker.min.js: {} 
+      
+upload:
+  css:
+    theme:
+      uikit/css/components/upload.gradient.min.css: {}
+  js:
+    uikit/js/components/upload.min.js: {} 

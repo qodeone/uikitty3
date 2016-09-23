@@ -105,3 +105,15 @@ h1.page-title {
 .block-user-login-block input{
 	margin-bottom:1em;
 }
+.uikitty-search.uk-nav {
+    background: rgba(230, 230, 230, 0.3) none repeat scroll 0 0;
+    display: block;
+    margin: -15px 0 10px;
+    overflow: hidden;
+    padding: 14px 14px 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,.1);
+}
+
+.path-frontpage .block-system-breadcrumb-block {
+	display:none;
+}

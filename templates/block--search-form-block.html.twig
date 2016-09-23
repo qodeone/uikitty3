@@ -2,7 +2,7 @@
 {#
 /**
  * @file
- * Bartik's theme implementation for a search form block. Extends Classy's
+ * uikitty's theme implementation for a search form block. Extends Classy's
  * search form block template.
  *
  * Available variables:
@@ -17,7 +17,9 @@
  */
 #}
 {% block content %}
-  <div{{ content_attributes.addClass('content', 'container-inline') }}>
+
+  <div{{ content_attributes.addClass('uikitty-search', 'uk-nav') }}>
     {{ parent() }}
   </div>
+
 {% endblock %}

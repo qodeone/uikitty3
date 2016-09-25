@@ -117,3 +117,31 @@ h1.page-title {
 .path-frontpage .block-system-breadcrumb-block {
 	display:none;
 }
+
+
+/*
+ * Uikitty Login full-viewport
+ */
+
+body.uikitty-login {
+    background:url(../img/rainbow-squares.jpg) #2f313d;
+    background-size:cover;
+}
+.uikitty-loginback {
+    background: #262731;
+    padding:15px;
+}
+.uikitty-login .uk-breadcrumb {
+   background:rgba(0,0,0,0.1);
+}
+.uikitty-login h1.page-title {
+    margin-top:1em;
+    color:rgba(255,255,255,0.5)
+}
+
+.uikitty-login .description {
+    display:none;
+}
+.uikitty-login input {
+    margin-bottom:1em;
+}

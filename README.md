@@ -1,6 +1,6 @@
-# Project Title
+# uikitty
 
-One Paragraph of project description goes here
+uikitty is a lightweight and modular front-end framework for developing fast and powerful web interfaces with Drupal 8.x
 
 ## Getting Started
 
@@ -8,80 +8,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisities
 
-What things you need to install the software and how to install them
+uikitty runs on Drupal 8.x
+uikitty should work with any contrib module.
 
 ```
-Give examples
+uikitty is for developers and designers. Build rapid prototypes with ease.
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+Install Drupal 8
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Download the newest version of uikitty base theme, make default theme in /admin/appearrance
 
 ```
-until finished
+Do not edit the uikitty theme, make your changes in either one of the contributed sub themes or make your own sub theme.
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* Dropwizard - Bla bla bla
-* Maven - Maybe
-* Atom - ergaerga
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Download desired sub theme. For minimal installations or developers looking to start with a clean slate, download the mini-kitty

@@ -17,9 +17,6 @@ global:
     uikit/js/uikit.min.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
-    - core/drupalSettings
-    - core/drupal
     
 accordion:
   css:

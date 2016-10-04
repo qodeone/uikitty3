@@ -99,7 +99,7 @@ notify:
     theme:
       uikit/css/components/notify.gradient.min.css: {}
   js:
-    uikit/js/components/noptify.min.js: {} 
+    uikit/js/components/notify.min.js: {} 
     
 placeholder:
   css:

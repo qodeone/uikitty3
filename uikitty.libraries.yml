@@ -1,11 +1,3 @@
-sticky:
-  css:
-    theme:
-      uikit/css/components/sticky.min.css: {}
-  js:
-    uikit/js/components/sticky.min.js: {}
-
-
 global:
   version: 1.x
   css:
@@ -176,4 +168,11 @@ upload:
     theme:
       uikit/css/components/upload.gradient.min.css: {}
   js:
-    uikit/js/components/upload.min.js: {} 
+    uikit/js/components/upload.min.js: {}
+    
+sticky:
+  css:
+    theme:
+      uikit/css/components/sticky.min.css: {}
+  js:
+    uikit/js/components/sticky.min.js: {}

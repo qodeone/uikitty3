@@ -2,6 +2,7 @@ name: uikitty
 type: theme
 description: A building block theme using uikit awesomeness.
 core: 8.x
+base theme: classy
 libraries:
   - uikitty/global
 
@@ -18,6 +19,7 @@ regions:
   footer: 'Footer'
   page_top: 'Page top'
   page_bottom: 'Page bottom'
+  offcanvas: 'Off-canvas'
 
 ckeditor_stylesheets:
   - uikit/css/uikit.gradient.min.css

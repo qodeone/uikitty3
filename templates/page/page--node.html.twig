@@ -50,7 +50,7 @@
  * @see html.html.twig
  */
 #}
-{{ attach_library('uikitty/sticky') }}
+
 <div id="header" class="uk-margin-bottom">
     <div class="uk-container uk-container-center">
 
@@ -98,8 +98,8 @@
      </div>                  
                     
     <div class="uk-width-medium-1-2 uk-width-large-1-4">  
-       <div class="uk-sticky-placeholder" style="margin:0;"> 
-        <div class="uk-panel uk-panel-box" data-uk-sticky="{top:35}" style="margin:0;">
+       <div> 
+        <div class="uk-panel uk-panel-box">
         {% if page.sidebar_first %}
           <div id="sidebar-first" class="column sidebar uk-nav-side">
             <aside class="section" role="complementary">
@@ -166,7 +166,7 @@
     <div class="uk-offcanvas-bar">
         
         <ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
-         {{ page.mainmenu }}
+         {{ page.offcanvas }}
         </ul>
     </div>
 </div>

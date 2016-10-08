@@ -21,3 +21,4 @@ regions:
 
 ckeditor_stylesheets:
   - uikit/css/uikit.gradient.min.css
+  

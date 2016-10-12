@@ -2,13 +2,17 @@ global:
   version: 1.x
   css:
     theme:
-      uikit/css/uikit.gradient.min.css: {}
+      uikit/css/uikit.almost-flat.min.css: {}
       css/fonts.css: {}
       css/app.css: {}
   js:
     uikit/js/uikit.min.js: {}
   dependencies:
     - core/jquery
+      
+notifysystem:
+  js:
+    js/notify-system.js: {}
     
 accordion:
   css:

@@ -1,4 +1,4 @@
-{% extends "@classy/misc/status-messages.html.twig" %}
+
 {#
 /**
  * @file
@@ -20,11 +20,50 @@
  *   displaying messages of that specific type.
  */
 #}
+
+
+
+
+{{ attach_library('classy/messages') }}
+{{ attach_library('uikitty/notifysystem') }}
+{{ attach_library('uikitty/notify') }}
+
+
+
 {% block messages %}
-  {% if message_list is not empty %}
-    {{ attach_library('bartik/messages') }}
-    <div class="">
-      {{ parent() }}
-    </div>
-  {% endif %}
+{% for type, messages in message_list %}
+  {%
+    set classes = [
+      'uk-alert',
+      'uk-alert--' ~ type,
+      'uk-margin-top',
+    ]
+  %}
+
+
+    {% if type == 'error' %}
+    
+    {% endif %}
+      {% if status_headings[type] %}
+        <h2 class="uk-hidden">{{ status_headings[type] }}</h2>
+      {% endif %}
+      {% if messages|length > 1 %}
+        <ul class="messages__list">
+          {% for message in messages %}
+            <button class="uk-button uk-notify-alert uk-hidden" data-message='{{ message }}' data-pos="bottom-right">alert</button>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <button class="uk-button uk-notify-alert uk-hidden" data-message='{{ messages|first }}' data-pos="bottom-right">alert</button>
+      {% endif %}
+    {% if type == 'error' %}
+    
+    {% endif %}
+
+  {# Remove type specific classes. #}
+  {% set attributes = attributes.removeClass(classes) %}
+{% endfor %}
 {% endblock messages %}
+
+
+

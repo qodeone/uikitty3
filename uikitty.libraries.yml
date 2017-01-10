@@ -1,5 +1,6 @@
 global:
   version: 1.x
+  header: true
   css:
     theme:
       uikit/css/uikit.min.css: {}
@@ -8,7 +9,7 @@ global:
     uikit/js/uikit.min.js: {}
   dependencies:
     - core/jquery
-      
+
 notifysystem:
   js:
     js/notify-system.js: {}

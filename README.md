@@ -1,6 +1,7 @@
-# uikitty
+# uikitty 3.x-dev
 
-uikitty is a lightweight and modular front-end framework for developing fast and powerful web interfaces with Drupal 8.x
+uikitty is a lightweight and modular front-end framework for developing fast and powerful web interfaces with Drupal 8.x.
+Version 3.x-dev uses the latest 3.0.0-Beta.1 version of uikit.
 
 ## Getting Started
 

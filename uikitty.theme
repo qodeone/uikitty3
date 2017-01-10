@@ -4,6 +4,7 @@
  * The primary PHP file for the Uikitty base theme.
  *
  */
+use Drupal\Core\Asset\AttachedAssetsInterface;
 
 /**
  * Implements hook_theme_suggestions_page_alter().
@@ -39,4 +40,13 @@ function uikitty_theme_suggestions_menu_alter(array &$suggestions, array $variab
 function uikitty_preprocess_html(&$variables) {
   $current_path = \Drupal::service('path.current')->getPath();
   $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function uikitty_js_alter(&$javascript, AttachedAssetsInterface $assets) {
+  // Move jquery to header.
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['scope'] = 'header';
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['weight'] = -20;
 }

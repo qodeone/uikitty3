@@ -1,32 +1,37 @@
 /*
  * contextual links display fix
  */
- 
+
 #block-front .contextual a {
-	color:black;
+  color: black;
 }
-.contextual ul.contextual-links.uk-subnav.uk-subnav-pill  {
-	padding:5px;
-	border-color:#eee;
+
+.contextual ul.contextual-links.uk-subnav.uk-subnav-pill {
+  padding: 5px;
+  border-color: #eee;
 }
+
 .contextual button.trigger:hover + .contextual-links.uk-subnav.uk-subnav-pill {
-	display:block;
+  display: block;
 }
+
 .contextual ul.contextual-links:hover {
-	display:block;
+  display: block;
 }
+
 .contextual-links.uk-subnav.uk-subnav-pill {
-    display: none;
+  display: none;
 }
+
 .contextual ul.contextual-links.uk-subnav.uk-subnav-pill li.itemlink {
-	float:none;
-	display:block;
-	text-align: right;
+  float: none;
+  display: block;
+  text-align: right;
 }
 
 /*
  * add color to em on notify component for showing default drupal status messages
  */
 .uk-notify a, .uk-notify em {
-	color:#91caf9;
+  color: #91caf9;
 }

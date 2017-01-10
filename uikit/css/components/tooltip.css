@@ -1,12 +1,11 @@
-/*! UIkit 2.27.2 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /* ========================================================================
    Component: Tooltip
  ========================================================================== */
 /*
  * 1. Hide by default
- * 2. Set fixed position
- * 3. Set dimensions
- * 4. Set style
+ * 2. Position
+ * 3. Dimensions
+ * 4. Style
  */
 .uk-tooltip {
   /* 1 */
@@ -17,101 +16,29 @@
   /* 3 */
   box-sizing: border-box;
   max-width: 200px;
-  padding: 5px 8px;
+  padding: 3px 6px;
   /* 4 */
-  background: #333;
-  color: rgba(255, 255, 255, 0.7);
+  background: #666;
+  border-radius: 2px;
+  color: #fff;
   font-size: 12px;
-  line-height: 18px;
-  word-break: break-all;
 }
-/* Triangle
- ========================================================================== */
-/*
- * 1. Dashed is less antialised than solid
- */
-.uk-tooltip:after {
-  content: "";
+/* Show */
+.uk-tooltip.uk-active {
   display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  /* 1 */
-  border: 5px dashed #333;
 }
-/* Direction modifiers
+/* Direction / Alignment modifiers
  ========================================================================== */
-/*
- * Top
- */
-.uk-tooltip-top:after,
-.uk-tooltip-top-left:after,
-.uk-tooltip-top-right:after {
-  bottom: -5px;
-  border-top-style: solid;
-  border-bottom: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-top-color: #333;
+/* Direction */
+[class*='uk-tooltip-top'] {
+  margin-top: -10px;
 }
-/*
- * Bottom
- */
-.uk-tooltip-bottom:after,
-.uk-tooltip-bottom-left:after,
-.uk-tooltip-bottom-right:after {
-  top: -5px;
-  border-bottom-style: solid;
-  border-top: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: #333;
+[class*='uk-tooltip-bottom'] {
+  margin-top: 10px;
 }
-/*
- * Top/Bottom center
- */
-.uk-tooltip-top:after,
-.uk-tooltip-bottom:after {
-  left: 50%;
-  margin-left: -5px;
+[class*='uk-tooltip-left'] {
+  margin-left: -10px;
 }
-/*
- * Top/Bottom left
- */
-.uk-tooltip-top-left:after,
-.uk-tooltip-bottom-left:after {
-  left: 10px;
-}
-/*
- * Top/Bottom right
- */
-.uk-tooltip-top-right:after,
-.uk-tooltip-bottom-right:after {
-  right: 10px;
-}
-/*
- * Left
- */
-.uk-tooltip-left:after {
-  right: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-left-style: solid;
-  border-right: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: #333;
-}
-/*
- * Right
- */
-.uk-tooltip-right:after {
-  left: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-right-style: solid;
-  border-left: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: #333;
+[class*='uk-tooltip-right'] {
+  margin-left: 10px;
 }

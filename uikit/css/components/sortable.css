@@ -1,4 +1,3 @@
-/*! UIkit 2.27.2 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /* ========================================================================
    Component: Sortable
  ========================================================================== */
@@ -12,12 +11,10 @@
   touch-action: none;
 }
 /*
- * Disables the default callout shown when you touch and hold a touch target
- * Currently only works in Webkit
+ * Deactivate pointer-events on SVGs in Safari
  */
-.uk-sortable a,
-.uk-sortable img {
-  -webkit-touch-callout: none;
+.uk-sortable svg {
+  pointer-events: none;
 }
 /*
  * Remove margin from the last-child
@@ -25,42 +22,26 @@
 .uk-sortable > :last-child {
   margin-bottom: 0;
 }
-/* Sub-modifier `uk-sortable-dragged`
+/* Drag
  ========================================================================== */
-.uk-sortable-dragged {
-  position: absolute;
-  z-index: 1050;
+.uk-sortable-drag {
+  position: absolute !important;
+  z-index: 1050 !important;
   pointer-events: none;
 }
-/* Sub-modifier `uk-sortable-placeholder`
+/* Placeholder
  ========================================================================== */
 .uk-sortable-placeholder {
   opacity: 0;
 }
-/* Empty List
+/* Empty modifier
  ========================================================================== */
 .uk-sortable-empty {
-  min-height: 30px;
+  min-height: 50px;
 }
-/* Sub-object `uk-sortable-handle`
+/* Handle
  ========================================================================== */
-/*
- * Deactivate browser touch actions in IE11
- */
-.uk-sortable-handle {
-  touch-action: none;
-}
 /* Hover */
 .uk-sortable-handle:hover {
   cursor: move;
-}
-/* Sub-object `uk-sortable-moving`
- ========================================================================== */
-.uk-sortable-moving,
-.uk-sortable-moving * {
-  cursor: move;
-}
-/* Fixes dragging items over iframes */
-.uk-sortable-moving iframe {
-  pointer-events: none;
 }

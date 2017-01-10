@@ -1,0 +1,96 @@
+/* ========================================================================
+   Component: Notification
+ ========================================================================== */
+/*
+ * 1. Set position
+ * 2. Dimensions
+ */
+.uk-notification {
+  /* 1 */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1040;
+  /* 2 */
+  box-sizing: border-box;
+  width: 350px;
+}
+/* Position modifiers
+========================================================================== */
+.uk-notification-top-right,
+.uk-notification-bottom-right {
+  left: auto;
+  right: 10px;
+}
+.uk-notification-top-center,
+.uk-notification-bottom-center {
+  left: 50%;
+  margin-left: -175px;
+}
+.uk-notification-bottom-left,
+.uk-notification-bottom-right,
+.uk-notification-bottom-center {
+  top: auto;
+  bottom: 10px;
+}
+/* Responsiveness
+========================================================================== */
+/* Phones portrait and smaller */
+@media (max-width: 639px) {
+  .uk-notification {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    margin: 0;
+  }
+}
+/* Message
+========================================================================== */
+.uk-notification-message {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 15px;
+  background: #f8f8f8;
+  color: #666;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+/* Close
+ * Adopts `uk-close`
+ ========================================================================== */
+.uk-notification-close {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+}
+.uk-notification-message:hover .uk-notification-close {
+  display: block;
+}
+/* Style modifiers
+ ========================================================================== */
+/*
+ * Primary
+ */
+.uk-notification-message-primary {
+  color: #1e87f0;
+}
+/*
+ * Success
+ */
+.uk-notification-message-success {
+  color: #32d296;
+}
+/*
+ * Warning
+ */
+.uk-notification-message-warning {
+  color: #faa05a;
+}
+/*
+ * Danger
+ */
+.uk-notification-message-danger {
+  color: #f0506e;
+}

@@ -1,262 +1,210 @@
-/*! UIkit 2.27.2 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-(function(addon) {
+/*! UIkit 3.0.0-beta.1 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
 
-    var component;
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('uikit')) :
+    typeof define === 'function' && define.amd ? define(['uikit'], factory) :
+    (factory(global.UIkit));
+}(this, (function (uikit) { 'use strict';
 
-    if (window.UIkit) {
-        component = addon(UIkit);
-    }
+var $ = uikit.util.$;
+var ajax = uikit.util.ajax;
+var on = uikit.util.on;
 
-    if (typeof define == 'function' && define.amd) {
-        define('uikit-upload', ['uikit'], function(){
-            return component || addon(UIkit);
-        });
-    }
+UIkit.component('upload', {
 
-})(function(UI){
+    props: {
+        allow: String,
+        clsDragover: String,
+        concurrent: Number,
+        dataType: String,
+        mime: String,
+        msgInvalidMime: String,
+        msgInvalidName: String,
+        multiple: Boolean,
+        name: String,
+        params: Object,
+        type: String,
+        url: String
+    },
 
-    "use strict";
+    defaults: {
+        allow: false,
+        clsDragover: 'uk-dragover',
+        concurrent: 1,
+        dataType: undefined,
+        mime: false,
+        msgInvalidMime: 'Invalid File Type: %s',
+        msgInvalidName: 'Invalid File Name: %s',
+        multiple: false,
+        name: 'files[]',
+        params: {},
+        type: 'POST',
+        url: '',
+        abort: null,
+        beforeAll: null,
+        beforeSend: null,
+        complete: null,
+        completeAll: null,
+        error: null,
+        fail: function fail(msg) {
+            alert(msg);
+        },
+        load: null,
+        loadEnd: null,
+        loadStart: null,
+        progress: null
+    },
 
-    UI.component('uploadSelect', {
+    events: {
 
-        init: function() {
+        change: function change(e) {
 
-            var $this = this;
+            if (!$(e.target).is('input[type="file"]')) {
+                return;
+            }
 
-            this.on('change', function() {
-                xhrupload($this.element[0].files, $this.options);
-                var twin = $this.element.clone(true).data('uploadSelect', $this);
-                $this.element.replaceWith(twin);
-                $this.element = twin;
-            });
-        }
-    });
+            e.preventDefault();
 
-    UI.component('uploadDrop', {
+            if (e.target.files) {
+                this.upload(e.target.files);
+            }
 
-        defaults: {
-            'dragoverClass': 'uk-dragover'
+            e.target.value = '';
         },
 
-        init: function() {
+        drop: function drop(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-            var $this = this, hasdragCls = false;
+            var transfer = e.originalEvent.dataTransfer;
 
-            this.on('drop', function(e){
-
-                if (e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files) {
-
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    $this.element.removeClass($this.options.dragoverClass);
-                    $this.element.trigger('dropped.uk.upload', [e.originalEvent.dataTransfer.files]);
-
-                    xhrupload(e.originalEvent.dataTransfer.files, $this.options);
-                }
-
-            }).on('dragenter', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-            }).on('dragover', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-
-                if (!hasdragCls) {
-                    $this.element.addClass($this.options.dragoverClass);
-                    hasdragCls = true;
-                }
-            }).on('dragleave', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                $this.element.removeClass($this.options.dragoverClass);
-                hasdragCls = false;
-            });
-        }
-    });
-
-
-    UI.support.ajaxupload = (function() {
-
-        function supportFileAPI() {
-            var fi = document.createElement('INPUT'); fi.type = 'file'; return 'files' in fi;
-        }
-
-        function supportAjaxUploadProgressEvents() {
-            var xhr = new XMLHttpRequest(); return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
-        }
-
-        function supportFormData() {
-            return !! window.FormData;
-        }
-
-        return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
-    })();
-
-
-    function xhrupload(files, settings) {
-
-        if (!UI.support.ajaxupload){
-            return this;
-        }
-
-        settings = UI.$.extend({}, xhrupload.defaults, settings);
-
-        if (!files.length){
-            return;
-        }
-
-        if (settings.allow !== '*.*') {
-
-            for(var i=0,file;file=files[i];i++) {
-
-                if(!matchName(settings.allow, file.name)) {
-
-                    if(typeof(settings.notallowed) == 'string') {
-                       alert(settings.notallowed);
-                    } else {
-                       settings.notallowed(file, settings);
-                    }
-                    return;
-                }
+            if (!transfer || !transfer.files) {
+                return;
             }
+
+            this.$el.removeClass(this.clsDragover);
+
+            this.upload(transfer.files);
+        },
+
+        dragenter: function dragenter(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        },
+
+        dragover: function dragover(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.$el.addClass(this.clsDragover);
+        },
+
+        dragleave: function dragleave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.$el.removeClass(this.clsDragover);
         }
 
-        var complete = settings.complete;
+    },
 
-        if (settings.single){
+    methods: {
 
-            var count    = files.length,
-                uploaded = 0,
-                allow    = true;
+        upload: function upload(files) {
+            var this$1 = this;
 
-                settings.beforeAll(files);
 
-                settings.complete = function(response, xhr){
+            if (!files.length) {
+                return;
+            }
 
-                    uploaded = uploaded + 1;
+            this.$el.trigger('upload', [files]);
 
-                    complete(response, xhr);
+            for (var i = 0; i < files.length; i++) {
 
-                    if (settings.filelimit && uploaded >= settings.filelimit){
-                        allow = false;
+                if (this$1.allow) {
+                    if (!match(this$1.allow, files[i].name)) {
+                        this$1.fail(this$1.msgInvalidName.replace(/%s/, this$1.allow));
+                        return;
+                    }
+                }
+
+                if (this$1.mime) {
+                    if (!match(this$1.mime, files[i].type)) {
+                        this$1.fail(this$1.msgInvalidMime.replace(/%s/, this$1.mime));
+                        return;
+                    }
+                }
+
+            }
+
+            if (!this.multiple) {
+                files = [files[0]];
+            }
+
+            this.beforeAll && this.beforeAll(this, files);
+
+            var chunks = chunk(files, this.concurrent),
+                upload = function (files) {
+
+                    var data = new FormData();
+
+                    files.forEach(function (file) { return data.append(this$1.name, file); });
+
+                    for (var key in this$1.params) {
+                        data.append(key, this$1.params[key]);
                     }
 
-                    if (allow && uploaded<count){
-                        upload([files[uploaded]], settings);
-                    } else {
-                        settings.allcomplete(response, xhr);
-                    }
+                    ajax({
+                        data: data,
+                        url: this$1.url,
+                        type: this$1.type,
+                        dataType: this$1.dataType,
+                        beforeSend: this$1.beforeSend,
+                        complete: [this$1.complete, function (xhr, status) {
+                            if (chunks.length) {
+                                upload(chunks.shift());
+                            } else {
+                                this$1.completeAll && this$1.completeAll(xhr);
+                            }
+
+                            if (status === 'abort') {
+                                this$1.abort && this$1.abort(xhr);
+                            }
+                        }],
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        xhr: function () {
+                            var xhr = $.ajaxSettings.xhr();
+                            xhr.upload && this$1.progress && on(xhr.upload, 'progress', this$1.progress);
+                            ['loadStart', 'load', 'loadEnd', 'error', 'abort'].forEach(function (type) { return this$1[type] && on(xhr, type.toLowerCase(), this$1[type]); });
+                            return xhr;
+                        }
+                    })
+
                 };
 
-                upload([files[0]], settings);
+            upload(chunks.shift());
 
-        } else {
-
-            settings.complete = function(response, xhr){
-                complete(response, xhr);
-                settings.allcomplete(response, xhr);
-            };
-
-            upload(files, settings);
         }
 
-        function upload(files, settings){
-
-            // upload all at once
-            var formData = new FormData(), xhr = new XMLHttpRequest();
-
-            if (settings.before(settings, files)===false) return;
-
-            for (var i = 0, f; f = files[i]; i++) { formData.append(settings.param, f); }
-            for (var p in settings.params) { formData.append(p, settings.params[p]); }
-
-            // Add any event handlers here...
-            xhr.upload.addEventListener('progress', function(e){
-                var percent = (e.loaded / e.total)*100;
-                settings.progress(percent, e);
-            }, false);
-
-            xhr.addEventListener('loadstart', function(e){ settings.loadstart(e); }, false);
-            xhr.addEventListener('load',      function(e){ settings.load(e);      }, false);
-            xhr.addEventListener('loadend',   function(e){ settings.loadend(e);   }, false);
-            xhr.addEventListener('error',     function(e){ settings.error(e);     }, false);
-            xhr.addEventListener('abort',     function(e){ settings.abort(e);     }, false);
-
-            xhr.open(settings.method, settings.action, true);
-
-            if (settings.type=='json') {
-                xhr.setRequestHeader('Accept', 'application/json');
-            }
-
-            for (var h in settings.headers) {
-                xhr.setRequestHeader(h, settings.headers[h]);
-            }
-
-            xhr.onreadystatechange = function() {
-
-                settings.readystatechange(xhr);
-
-                if (xhr.readyState==4){
-
-                    var response = xhr.responseText;
-
-                    if (settings.type=='json') {
-                        try {
-                            response = UI.$.parseJSON(response);
-                        } catch(e) {
-                            response = false;
-                        }
-                    }
-
-                    settings.complete(response, xhr);
-                }
-            };
-            settings.beforeSend(xhr);
-            xhr.send(formData);
-        }
     }
 
-    xhrupload.defaults = {
-        action: '',
-        single: true,
-        method: 'POST',
-        param : 'files[]',
-        params: {},
-        allow : '*.*',
-        type  : 'text',
-        filelimit: false,
-        headers: {},
-
-        // events
-        before          : function(o){},
-        beforeSend      : function(xhr){},
-        beforeAll       : function(){},
-        loadstart       : function(){},
-        load            : function(){},
-        loadend         : function(){},
-        error           : function(){},
-        abort           : function(){},
-        progress        : function(){},
-        complete        : function(){},
-        allcomplete     : function(){},
-        readystatechange: function(){},
-        notallowed      : function(file, settings){ alert('Only the following file types are allowed: '+settings.allow); }
-    };
-
-    function matchName(pattern, path) {
-
-        var parsedPattern = '^' + pattern.replace(/\//g, '\\/').
-            replace(/\*\*/g, '(\\/[^\\/]+)*').
-            replace(/\*/g, '[^\\/]+').
-            replace(/((?!\\))\?/g, '$1.') + '$';
-
-        parsedPattern = '^' + parsedPattern + '$';
-
-        return (path.match(new RegExp(parsedPattern, 'i')) !== null);
-    }
-
-    UI.Utils.xhrupload = xhrupload;
-
-    return xhrupload;
 });
+
+function match(pattern, path) {
+    return path.match(new RegExp(("^" + (pattern.replace(/\//g, '\\/').replace(/\*\*/g, '(\\/[^\\/]+)*').replace(/\*/g, '[^\\/]+').replace(/((?!\\))\?/g, '$1.')) + "$"), 'i'));
+}
+
+function chunk(files, size) {
+    var chunks = [];
+    for (var i = 0; i < files.length; i += size) {
+        var chunk = [];
+        for (var j = 0; j < size; j++) {
+            chunk.push(files[i+j]);
+        }
+        chunks.push(chunk);
+    }
+    return chunks;
+}
+
+})));

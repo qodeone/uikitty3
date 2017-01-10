@@ -66,7 +66,7 @@
 #}
 {%
   set classes = [
-    'comment',
+    'uk-comment',
     'js-comment',
     status != 'published' ? 'comment--' ~ status,
     comment.owner.anonymous ? 'by-anonymous',
@@ -74,6 +74,7 @@
     'clearfix',
   ]
 %}
+
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
@@ -82,11 +83,14 @@
   #}
   <span class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></span>
 
-  <footer class="comment__meta">
+  <header class="uk-comment-header">
+    {# @ToDo we need special class uk-comment-avatar for user picture #}
     {{ user_picture }}
-    <p class="comment__author">{{ author }}</p>
-    <p class="comment__time">{{ created }}</p>
-    <p class="comment__permalink">{{ permalink }}</p>
+    <div class="uk-comment-meta">
+      <p class="comment__author">{{ author }}</p>
+      <p class="comment__time">{{ created }}</p>
+      <p class="comment__permalink">{{ permalink }}</p>
+    </div>
     {#
       Indicate the semantic relationship between parent and child comments
       for accessibility. The list is difficult to navigate in a screen
@@ -95,14 +99,9 @@
     {% if parent %}
       <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
-  </footer>
+  </header>
 
-  <div{{ content_attributes.addClass('comment__content') }}>
-    {% if title %}
-      {{ title_prefix }}
-      <h3{{ title_attributes }}>{{ title }}</h3>
-      {{ title_suffix }}
-    {% endif %}
+  <div{{ content_attributes.addClass('comment__content', 'uk-comment-body') }}>
     {{ content|without('links') }}
     {% if content.links %}
       <nav>{{ content.links }}</nav>

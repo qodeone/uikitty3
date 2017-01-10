@@ -20,6 +20,3 @@ regions:
   page_top: 'Page top'
   page_bottom: 'Page bottom'
   offcanvas: 'Off-canvas'
-
-ckeditor_stylesheets:
-  - uikit/css/uikit.almost-flat.min.css

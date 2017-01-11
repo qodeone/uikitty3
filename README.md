@@ -1,7 +1,9 @@
-# uikitty 3.x-dev
+# uikit3
 
-uikitty is a lightweight and modular front-end framework for developing fast and powerful web interfaces with Drupal 8.x.
-Version 3.x-dev uses the latest 3.0.0-Beta.1 version of uikit.
+uikit3 is uikitty with the power of the latest uikit version.
+
+uikit3 is a lightweight and modular front-end framework for developing fast and powerful web interfaces with Drupal 8.x.
+The theme is based on the latest uikit version (3.0.0-Beta.2) The dist files of uikit will be updated *as soon* a new version is available.
 
 ## Getting Started
 
@@ -9,21 +11,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisities
 
-uikitty runs on Drupal 8.x
-uikitty should work with any contrib module.
+uikit3 runs on Drupal 8.x
+uikit3 should work with any contrib module.
 
 ```
-uikitty is for developers and designers. Build rapid prototypes with ease.
+uikit3 is for developers and designers. Build rapid prototypes with ease.
 ```
 
 ### Installing
 
 Install Drupal 8
 
-Download the newest version of uikitty base theme, make default theme in /admin/appearrance
+Download the newest version of uikit3 base theme, make default theme in /admin/appearrance
 
 ```
-Do not edit the uikitty theme, make your changes in either one of the contributed sub themes or make your own sub theme.
+Do not edit the uikit3 theme, make your changes in either one of the contributed sub themes or make your own sub theme.
 ```
-
-Download desired sub theme. For minimal installations or developers looking to start with a clean slate, download the mini-kitty

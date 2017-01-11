@@ -1,10 +1,10 @@
-name: uikitty
+name: uikit3
 type: theme
 description: A building block theme using uikit awesomeness.
 core: 8.x
 base theme: classy
 libraries:
-  - uikitty/global
+  - uikit3/global
 
 regions:
   navigation: 'Navigation'

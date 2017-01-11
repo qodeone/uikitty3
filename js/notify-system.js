@@ -1,5 +1,5 @@
 /**
- * uikitty notification systen.
+ * uikit3 notification systen.
  */
 jQuery(function () {
   jQuery("body").on("click", ".uk-button[data-message]", function () {

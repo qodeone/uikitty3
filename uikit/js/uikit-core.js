@@ -1,4 +1,4 @@
-/*! UIkit 3.0.0-beta.1 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
+/*! UIkit 3.0.0-beta.2 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
 
 (function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('jquery')) :
@@ -1159,56 +1159,45 @@ function bootAPI (UIkit) {
 
     if (Observer) {
 
-        (new Observer(function () {
+        if (document.body) {
 
-            if (!document.body) {
-                return;
-            }
+            init();
 
-            this.disconnect();
+        } else {
 
-            apply(document.body, connect);
+            (new Observer(function () {
 
-            var forEach = Array.prototype.forEach;
+                if (document.body) {
+                    this.disconnect();
+                    init();
+                }
 
-            (new Observer(function (mutations) { return mutations.forEach(function (mutation) {
-                    forEach.call(mutation.addedNodes, function (node) { return apply(node, connect); });
-                    forEach.call(mutation.removedNodes, function (node) { return apply(node, UIkit.disconnect); });
-                }); }
-            )).observe(document.body, {childList: true, subtree: true});
+            })).observe(document.documentElement, {childList: true});
 
-        })).observe(document.documentElement, {childList: true});
+        }
 
     } else {
 
         ready(function () {
             apply(document.body, connect);
-            on(document.body, 'DOMNodeInserted', function (e) { return apply(e.target, connect); });
+            on(document.body, 'DOMNodeInserted', function (e) { return apply(e.target, UIkit.connect); });
             on(document.body, 'DOMNodeRemoved', function (e) { return apply(e.target, UIkit.disconnect); });
         });
 
     }
 
-    function connect(node) {
+    function init() {
 
-        UIkit.connect(node);
+        var forEach = Array.prototype.forEach;
 
-        if (!matches(node, UIkit.component.selector)) {
-            return;
-        }
+        apply(document.body, UIkit.connect);
 
-        for (var i = 0, name; i < node.attributes.length; i++) {
+        (new Observer(function (mutations) { return mutations.forEach(function (mutation) {
+                forEach.call(mutation.addedNodes, function (node) { return apply(node, UIkit.connect); });
+                forEach.call(mutation.removedNodes, function (node) { return apply(node, UIkit.disconnect); });
+            }); }
+        )).observe(document.body, {childList: true, subtree: true});
 
-            name = node.attributes[i].name;
-
-            if (name.lastIndexOf('uk-', 0) === 0) {
-                name = camelize(name.replace('uk-', ''));
-
-                if (UIkit[name]) {
-                    UIkit[name](node);
-                }
-            }
-        }
     }
 
     function apply(node, fn) {
@@ -1588,7 +1577,9 @@ function componentAPI (UIkit) {
 
     UIkit.component = function (name, options) {
 
-        UIkit.component.selector = (((UIkit.component.selector) + ",") || '') + "[uk-" + name + "]";
+        var selector = "[uk-" + name + "]";
+
+        UIkit.component.selector = (((UIkit.component.selector) + ",") || '') + selector;
 
         name = camelize(name);
 
@@ -1616,43 +1607,64 @@ function componentAPI (UIkit) {
             return result;
         };
 
+        if (document.body) {
+            UIkit[name](selector)
+        }
+
         return UIkit.components[name];
     };
 
     UIkit.getComponents = function (element) { return element && element[DATA] || {}; };
     UIkit.getComponent = function (element, name) { return UIkit.getComponents(element)[name]; };
 
-    UIkit.connect = function (element) {
+    UIkit.connect = function (node) {
 
-        if (!element[DATA]) {
+        if (node[DATA]) {
+
+            if (!~UIkit.elements.indexOf(node)) {
+                UIkit.elements.push(node);
+            }
+
+            for (var name in node[DATA]) {
+
+                var component = node[DATA][name];
+                if (!(component._uid in UIkit.instances)) {
+                    UIkit.instances[component._uid] = component;
+                    component._callHook('connected');
+                }
+
+            }
+        }
+
+        if (!matches(node, UIkit.component.selector)) {
             return;
         }
 
-        if (!~UIkit.elements.indexOf(element)) {
-            UIkit.elements.push(element);
-        }
+        for (var i = 0, name; i < node.attributes.length; i++) {
 
-        for (var name in element[DATA]) {
-            var component = element[DATA][name];
-            if (!(component._uid in UIkit.instances)) {
-                UIkit.instances[component._uid] = component;
-                component._callHook('connected');
+            name = node.attributes[i].name;
+
+            if (name.lastIndexOf('uk-', 0) === 0) {
+                name = camelize(name.replace('uk-', ''));
+
+                if (UIkit[name]) {
+                    UIkit[name](node);
+                }
             }
-
         }
 
     };
 
-    UIkit.disconnect = function (element) {
+    UIkit.disconnect = function (node) {
 
-        var index = UIkit.elements.indexOf(element);
+        var index = UIkit.elements.indexOf(node);
 
         if (~index) {
             UIkit.elements.splice(index, 1);
         }
 
-        for (var name in element[DATA]) {
-            var component = element[DATA][name];
+        for (var name in node[DATA]) {
+            var component = node[DATA][name];
             if (component._uid in UIkit.instances) {
                 delete UIkit.instances[component._uid];
                 component._callHook('disconnected');
@@ -4090,23 +4102,12 @@ function Svg (UIkit) {
         update: {
 
             read: function read() {
+                var this$1 = this;
+
 
                 if (!this.src) {
                     this.src = getSrc(this.$el);
                 }
-
-                this.set();
-            },
-
-            events: ['load']
-
-        },
-
-        methods: {
-
-            set: function set() {
-                var this$1 = this;
-
 
                 if (!this.src || this.isSet) {
                     return;
@@ -4178,8 +4179,13 @@ function Svg (UIkit) {
 
                     }); }
                 );
-
             },
+
+            events: ['load']
+
+        },
+
+        methods: {
 
             get: function get(src) {
 

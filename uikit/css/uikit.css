@@ -481,11 +481,11 @@ textarea {
  ========================================================================== */
 /* Muted
  ========================================================================== */
-.uk-link-muted,
+a.uk-link-muted,
 .uk-link-muted a {
   color: #999;
 }
-.uk-link-muted:hover,
+a.uk-link-muted:hover,
 .uk-link-muted a:hover {
   color: #666;
 }
@@ -494,9 +494,9 @@ textarea {
 /*
  * `!important` needed to override inverse component
  */
-.uk-link-reset,
-.uk-link-reset:hover,
-.uk-link-reset:focus,
+a.uk-link-reset,
+a.uk-link-reset:hover,
+a.uk-link-reset:focus,
 .uk-link-reset a,
 .uk-link-reset a:hover,
 .uk-link-reset a:focus {
@@ -3548,7 +3548,7 @@ ul.uk-nav-sub {
 /*
  * Align groups
  * 1. Needed for dropdowns because a new position context is created
- *    `z-index` must be small than off-canvas
+ *    `z-index` must be smaller than off-canvas
  * 2. Fix text wrapping if the centered section is larger than 50% of the navbar
  */
 .uk-navbar-right {
@@ -8258,35 +8258,35 @@ td.uk-text-break {
 .uk-offcanvas-bar hr {
   border-top-color: rgba(255, 255, 255, 0.2);
 }
-.uk-light .uk-link-muted,
+.uk-light a.uk-link-muted,
 .uk-light .uk-link-muted a,
-.uk-section-primary:not(.uk-preserve-color) .uk-link-muted,
+.uk-section-primary:not(.uk-preserve-color) a.uk-link-muted,
 .uk-section-primary:not(.uk-preserve-color) .uk-link-muted a,
-.uk-section-secondary:not(.uk-preserve-color) .uk-link-muted,
+.uk-section-secondary:not(.uk-preserve-color) a.uk-link-muted,
 .uk-section-secondary:not(.uk-preserve-color) .uk-link-muted a,
-.uk-card-primary > :not([class*='uk-card-media']) .uk-link-muted,
+.uk-card-primary > :not([class*='uk-card-media']) a.uk-link-muted,
 .uk-card-primary > :not([class*='uk-card-media']) .uk-link-muted a,
-.uk-card-secondary > :not([class*='uk-card-media']) .uk-link-muted,
+.uk-card-secondary > :not([class*='uk-card-media']) a.uk-link-muted,
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-link-muted a,
-.uk-overlay-primary .uk-link-muted,
+.uk-overlay-primary a.uk-link-muted,
 .uk-overlay-primary .uk-link-muted a,
-.uk-offcanvas-bar .uk-link-muted,
+.uk-offcanvas-bar a.uk-link-muted,
 .uk-offcanvas-bar .uk-link-muted a {
   color: rgba(255, 255, 255, 0.5);
 }
-.uk-light .uk-link-muted:hover,
+.uk-light a.uk-link-muted:hover,
 .uk-light .uk-link-muted a:hover,
-.uk-section-primary:not(.uk-preserve-color) .uk-link-muted:hover,
+.uk-section-primary:not(.uk-preserve-color) a.uk-link-muted:hover,
 .uk-section-primary:not(.uk-preserve-color) .uk-link-muted a:hover,
-.uk-section-secondary:not(.uk-preserve-color) .uk-link-muted:hover,
+.uk-section-secondary:not(.uk-preserve-color) a.uk-link-muted:hover,
 .uk-section-secondary:not(.uk-preserve-color) .uk-link-muted a:hover,
-.uk-card-primary > :not([class*='uk-card-media']) .uk-link-muted:hover,
+.uk-card-primary > :not([class*='uk-card-media']) a.uk-link-muted:hover,
 .uk-card-primary > :not([class*='uk-card-media']) .uk-link-muted a:hover,
-.uk-card-secondary > :not([class*='uk-card-media']) .uk-link-muted:hover,
+.uk-card-secondary > :not([class*='uk-card-media']) a.uk-link-muted:hover,
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-link-muted a:hover,
-.uk-overlay-primary .uk-link-muted:hover,
+.uk-overlay-primary a.uk-link-muted:hover,
 .uk-overlay-primary .uk-link-muted a:hover,
-.uk-offcanvas-bar .uk-link-muted:hover,
+.uk-offcanvas-bar a.uk-link-muted:hover,
 .uk-offcanvas-bar .uk-link-muted a:hover {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -9802,7 +9802,7 @@ td.uk-text-break {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-accordion-title::after,
 .uk-overlay-primary .uk-accordion-title::after,
 .uk-offcanvas-bar .uk-accordion-title::after {
-  background-image: url("data:image/svg+xml;charset=UTF-8,");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22rgba%28255,%20255,%20255,%200.7%29%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%3E%3C%2Frect%3E%0A%20%20%20%20%3Crect%20fill%3D%22rgba%28255,%20255,%20255,%200.7%29%22%20width%3D%221%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%3E%3C%2Frect%3E%0A%3C%2Fsvg%3E");
 }
 .uk-light .uk-open > .uk-accordion-title::after,
 .uk-section-primary:not(.uk-preserve-color) .uk-open > .uk-accordion-title::after,

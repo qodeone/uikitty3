@@ -1,4 +1,4 @@
-/*! UIkit 3.0.0-beta.2 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
+/*! UIkit 3.0.0-beta.3 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('uikit')) :
@@ -7,7 +7,8 @@
 }(this, (function (uikit) { 'use strict';
 
 var $ = uikit.util.$;
-var doc = uikit.util.doc;
+var createEvent = uikit.util.createEvent;
+var doc = uikit.util.docElement;
 var extend = uikit.util.extend;
 var isWithin = uikit.util.isWithin;
 var Observer = uikit.util.Observer;
@@ -16,7 +17,6 @@ var off = uikit.util.off;
 var pointerDown = uikit.util.pointerDown;
 var pointerMove = uikit.util.pointerMove;
 var pointerUp = uikit.util.pointerUp;
-var requestAnimationFrame = uikit.util.requestAnimationFrame;
 var win = uikit.util.win;
 
 UIkit.component('sortable', {
@@ -53,9 +53,8 @@ UIkit.component('sortable', {
         handle: false
     },
 
-    ready: function ready() {
+    init: function init() {
         var this$1 = this;
-
 
         ['init', 'start', 'move', 'end'].forEach(function (key) {
             var fn = this$1[key];
@@ -70,12 +69,17 @@ UIkit.component('sortable', {
                 fn(e);
             }
         });
+    },
+
+    connected: function connected() {
+        var this$1 = this;
+
 
         on(this.$el, pointerDown, this.init);
 
         if (this.clsEmpty) {
             var empty = function () { return this$1.$el.toggleClass(this$1.clsEmpty, !this$1.$el.children().length); };
-            (new Observer(empty)).observe(this.$el[0], {childList: true});
+            (this._observer = new Observer(empty)).observe(this.$el[0], {childList: true});
             empty();
         }
 
@@ -177,7 +181,7 @@ UIkit.component('sortable', {
                 return;
             }
 
-            this.update();
+            this.$emit();
 
             var target = e.type === 'mousemove' ? e.target : document.elementFromPoint(this.pos.x - document.body.scrollLeft, this.pos.y - document.body.scrollTop),
                 sortable = getSortable(target),
@@ -209,7 +213,7 @@ UIkit.component('sortable', {
             if (scroll !== this.scrollY) {
                 this.pos.y += scroll - this.scrollY;
                 this.scrollY = scroll;
-                this.update();
+                this.$emit();
             }
         },
 
@@ -252,10 +256,6 @@ UIkit.component('sortable', {
 
         },
 
-        update: function update() {
-            this._callUpdate();
-        },
-
         insert: function insert(element, target) {
             var this$1 = this;
 
@@ -276,7 +276,6 @@ UIkit.component('sortable', {
                     this$1.$el.append(element);
                 }
 
-                this$1.$updateParents();
             };
 
             if (this.animation) {
@@ -288,22 +287,15 @@ UIkit.component('sortable', {
         },
 
         remove: function remove(element) {
-            var this$1 = this;
-
 
             if (!this.$el.has(element).length) {
                 return;
             }
 
-            var remove = function () {
-                element.remove();
-                this$1.$updateParents();
-            };
-
             if (this.animation) {
-                this.animate(remove);
+                this.animate(function () { return element.remove(); });
             } else {
-                remove();
+                element.remove();
             }
 
         },
@@ -313,6 +305,7 @@ UIkit.component('sortable', {
 
 
             var props = [],
+                event = createEvent('update', true, false, {sync: true}),
                 children = this.$el.children().toArray().map(function (el) {
                     el = $(el);
                     props.push(extend({
@@ -329,21 +322,28 @@ UIkit.component('sortable', {
 
             children.forEach(function (el) { return el.stop(); });
             this.$el.children().css(reset);
-            this.$updateParents();
+            this.$update(event, true);
 
-            requestAnimationFrame(function () {
+            this.$el.css('min-height', this.$el.height());
 
-                this$1.$el.css('min-height', this$1.$el.height());
+            var positions = children.map(function (el) { return el.position(); });
+            $.when.apply($, children.map(function (el, i) { return el.css(props[i]).animate(positions[i], this$1.animation).promise(); }))
+                .then(function () {
+                    this$1.$el.css('min-height', '').children().css(reset);
+                    this$1.$update(event, true);
+                });
 
-                var positions = children.map(function (el) { return el.position(); });
-                $.when.apply($, children.map(function (el, i) { return el.css(props[i]).animate(positions[i], this$1.animation).promise(); }))
-                    .then(function () {
-                        this$1.$el.css('min-height', '').children().css(reset);
-                        this$1.$updateParents();
-                    });
-            })
         }
 
+    },
+
+    disconnected: function disconnected() {
+
+        off(this.$el, pointerDown, this.init);
+
+        if (this._observer) {
+            this._observer.disconnect()
+        }
     }
 
 });

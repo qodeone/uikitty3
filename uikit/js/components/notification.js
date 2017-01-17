@@ -1,4 +1,4 @@
-/*! UIkit 3.0.0-beta.2 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
+/*! UIkit 3.0.0-beta.3 | http://www.getuikit.com | (c) 2014 - 2016 YOOtheme | MIT License */
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('uikit')) :
@@ -12,6 +12,10 @@ var Transition = uikit.util.Transition;
 var containers = {};
 
 UIkit.component('notification', {
+
+    functional: true,
+
+    args: ['message', 'status'],
 
     defaults: {
         message: '',
@@ -29,7 +33,7 @@ UIkit.component('notification', {
         }
 
         this.$mount($(
-            ("<div class=\"uk-notification-message" + (this.status ? (" uk-notification-message-" + (this.status)) : '') + "\">\n                <a href=\"#\" class=\"uk-notification-close\" uk-close></a>\n                <div>" + (this.message) + "</div>\n            </div>")
+            ("<div class=\"uk-notification-message" + (this.status ? (" uk-notification-message-" + (this.status)) : '') + "\">\n                <a href=\"#\" class=\"uk-notification-close\" data-uk-close></a>\n                <div>" + (this.message) + "</div>\n            </div>")
         ).appendTo(containers[this.pos].show()));
 
     },

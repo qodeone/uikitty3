@@ -1,20 +1,17 @@
 global:
-  remote: https://getuikit.com
-  version: 3.0.0
-  license:
-    name: MIT
-    url: https://github.com/uikit/uikit/blob/develop/LICENSE.md
-    gpl-compatible: true
-  header: true
   css:
     theme:
-      https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.8/css/uikit.min.css: { type: external, minified: true }
+      uikit/css/uikit.min.css: {}
       css/app.css: {}
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.8/js/uikit.min.js: { type: external, minified: true }
+    uikit/js/uikit.min.js: {}
   dependencies:
     - core/jquery
 
 notifysystem:
   js:
     js/notify-system.js: {}
+
+notification:
+  js:
+    uikit/js/components/notification.min.js: {}

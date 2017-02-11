@@ -22,7 +22,7 @@ UIkitty3 is for developers and designers. Build rapid prototypes with ease.
 
 Install Drupal 8
 
-Download the newest version of UIkitty3 base theme, make default theme in /admin/appearrance
+Download the newest version of UIkitty 3.x base theme, make default theme in /admin/appearrance
 
 ```
 Do not edit the UIkitty3 theme, make your changes in either one of the contributed sub themes or make your own sub theme.

@@ -10,4 +10,4 @@
  * @see template_preprocess_input()
  */
 #}
-<button{{ attributes.addClass('uk-button uk-button-primary') }}>{{ attributes.value }}</button>{{ children }}
+<button{{ attributes.addClass('uk-button uk-button-primary') }}>{{ attributes.value|raw }}</button>{{ children }}

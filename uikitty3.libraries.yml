@@ -5,13 +5,10 @@ global:
       css/app.css: {}
   js:
     uikit/js/uikit.min.js: {}
+    uikit/js/uikit-icons.min.js: {}
   dependencies:
     - core/jquery
 
 notifysystem:
   js:
     js/notify-system.js: {}
-
-notification:
-  js:
-    uikit/js/components/notification.min.js: {}

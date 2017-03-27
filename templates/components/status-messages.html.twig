@@ -23,7 +23,6 @@
 
 {{ attach_library('classy/messages') }}
 {{ attach_library('uikit3/notifysystem') }}
-{{ attach_library('uikit3/notify') }}
 
 {% block messages %}
   {% for type, messages in message_list %}
@@ -56,6 +55,3 @@
     {% set attributes = attributes.removeClass(classes) %}
   {% endfor %}
 {% endblock messages %}
-
-
-

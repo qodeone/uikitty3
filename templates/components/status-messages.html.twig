@@ -22,7 +22,7 @@
 #}
 
 {{ attach_library('classy/messages') }}
-{{ attach_library('uikit3/notifysystem') }}
+{{ attach_library('uikitty3/notifysystem') }}
 
 {% block messages %}
   {% for type, messages in message_list %}
@@ -41,11 +41,11 @@
     {% if messages|length > 1 %}
       <ul class="messages__list">
         {% for message in messages %}
-          <button class="uk-button uk-notify-alert uk-hidden" data-message='{{ message }}' data-pos="bottom-right">alert</button>
+          <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 2'></span> {{ message }}" data-pos="top-right">alert</button>
         {% endfor %}
       </ul>
     {% else %}
-      <button class="uk-button uk-notify-alert uk-hidden" data-message='{{ messages|first }}' data-pos="bottom-right">alert</button>
+      <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 2'></span> {{ messages|first }}" data-pos="top-right">alert</button>
     {% endif %}
     {% if type == 'error' %}
 

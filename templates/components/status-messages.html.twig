@@ -41,11 +41,11 @@
     {% if messages|length > 1 %}
       <ul class="messages__list">
         {% for message in messages %}
-          <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 2'></span> {{ message }}" data-pos="top-right">alert</button>
+          <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 1.5'></span> {{ message }}" data-pos="top-right">alert</button>
         {% endfor %}
       </ul>
     {% else %}
-      <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 2'></span> {{ messages|first }}" data-pos="top-right">alert</button>
+      <button class="uk-button uk-notify-alert uk-hidden" data-message="<span uk-icon='icon: check; ratio: 1.5'></span> {{ messages|first }}" data-pos="top-right">alert</button>
     {% endif %}
     {% if type == 'error' %}
 

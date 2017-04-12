@@ -4,7 +4,7 @@
  * The primary PHP file for the uikitty3 base theme.
  *
  */
-use Mindi\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Asset\AttachedAssetsInterface;
 
 /**
  * Implements hook_theme_suggestions_page_alter().
@@ -12,7 +12,7 @@ use Mindi\Core\Asset\AttachedAssetsInterface;
 
 function uikitty3_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
-  if ($node = \Mindi::request()->attributes->get('node')) {
+  if ($node = \Drupal::request()->attributes->get('node')) {
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }
 }
@@ -38,8 +38,8 @@ function uikitty3_theme_suggestions_menu_alter(array &$suggestions, array $varia
 }
 
 function uikitty3_preprocess_html(&$variables) {
-  $current_path = \Mindi::service('path.current')->getPath();
-  $variables['current_path'] = \Mindi::service('path.alias_manager')->getAliasByPath($current_path);
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 }
 
 /**

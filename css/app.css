@@ -30,7 +30,7 @@
 }
 
 /*
- * add color to em on notify component for showing default mindi status messages
+ * add color to em on notify component for showing default drupal status messages
  */
 .uk-notify a, .uk-notify em {
   color: #91caf9;

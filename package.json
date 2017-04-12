@@ -1,0 +1,12 @@
+{
+  "name": "uikitty3",
+  "version": "1.0.0",
+  "description": "A bridge between Drupal 8 and UIkit 3",
+  "main": "index.js",
+  "repository": "git@github.com:qodeone/uikitty3.git",
+  "author": "Isaac Horton <isaac@qode.one>",
+  "license": "MIT",
+  "dependencies": {
+    "uikit": "^3.0.0-beta.21"
+  }
+}

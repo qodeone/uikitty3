@@ -1,5 +1,5 @@
 {
-  "name": "drupal/uikitty3",
-  "type": "drupal-theme",
+  "name": "mindi/uikitty3",
+  "type": "mindi-theme",
   "minimum-stability": "dev"
 }
